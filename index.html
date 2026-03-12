@@ -7,92 +7,109 @@
     <style>
         :root { --primary: #1a73e8; --bg: #f8f9fa; }
         body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); display: flex; justify-content: center; padding: 20px; color: #333; }
-        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 100%; max-width: 450px; position: relative; }
+        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 100%; max-width: 900px; display: flex; gap: 30px; }
         
-        /* Logo i Pasek językowy */
+        /* Sekcja Lewa: Grafika */
+        .visual-side { flex: 1; display: flex; align-items: center; justify-content: center; background: #fff; border-radius: 10px; padding: 10px; border: 1px solid #eee; }
+        .visual-side img { max-width: 100%; height: auto; border-radius: 5px; transition: 0.3s; }
+
+        /* Sekcja Prawa: Formularz */
+        .form-side { flex: 1; min-width: 350px; }
+        
         .header-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
-        .logo { max-width: 150px; height: auto; }
+        .logo { max-width: 130px; height: auto; }
         
         .lang-bar { display: flex; gap: 5px; }
         .lang-btn { cursor: pointer; border: 1px solid #ddd; padding: 5px 10px; border-radius: 15px; background: white; font-size: 10px; font-weight: bold; transition: 0.2s; outline: none; }
         .lang-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
-        h2 { color: var(--primary); margin: 10px 0 15px 0; text-align: center; border-bottom: 2px solid #eee; padding-bottom: 15px; font-size: 22px; clear: both; }
+        h2 { color: var(--primary); margin: 10px 0 15px 0; text-align: left; border-bottom: 2px solid #eee; padding-bottom: 15px; font-size: 20px; }
         
         label { display: block; margin-top: 20px; font-size: 13px; font-weight: 600; color: #555; text-transform: uppercase; }
         select { width: 100%; padding: 12px; margin-top: 5px; border: 2px solid #eee; border-radius: 8px; font-size: 16px; outline: none; cursor: pointer; background: #fff; }
         select:focus { border-color: var(--primary); }
 
-        .price-box { margin-top: 30px; padding: 25px; background: #f0f7ff; border-radius: 12px; text-align: center; border: 1px solid #d0e3ff; }
+        .price-box { margin-top: 30px; padding: 20px; background: #f0f7ff; border-radius: 12px; text-align: center; border: 1px solid #d0e3ff; }
         .price-label { font-size: 13px; color: #666; font-weight: bold; }
         .price-value { font-size: 32px; color: var(--primary); font-weight: 800; display: block; margin-top: 5px; }
         
-        .specs { margin-top: 25px; font-size: 13px; color: #777; line-height: 1.6; background: #fafafa; padding: 15px; border-radius: 8px; border: 1px solid #eee; }
+        .specs { margin-top: 25px; font-size: 12px; color: #777; line-height: 1.5; background: #fafafa; padding: 15px; border-radius: 8px; border: 1px solid #eee; }
+
+        @media (max-width: 800px) {
+            .card { flex-direction: column; align-items: center; }
+            .visual-side { width: 100%; order: 2; }
+            .form-side { width: 100%; order: 1; }
+        }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <div class="header-top">
-        <img src="logo.jpg" alt="WUWER Logo" class="logo">
-        
-        <div class="lang-bar">
-            <button class="lang-btn active" onclick="setLang('pl', this)">PL</button>
-            <button class="lang-btn" onclick="setLang('en', this)">EN</button>
-            <button class="lang-btn" onclick="setLang('de', this)">DE</button>
+    <div class="visual-side">
+        <img id="mainImg" src="start.png" alt="Schemat RWS">
+    </div>
+
+    <div class="form-side">
+        <div class="header-top">
+            <img src="logo.jpg" alt="WUWER Logo" class="logo">
+            <div class="lang-bar">
+                <button class="lang-btn active" onclick="setLang('pl', this)">PL</button>
+                <button class="lang-btn" onclick="setLang('en', this)">EN</button>
+                <button class="lang-btn" onclick="setLang('de', this)">DE</button>
+            </div>
         </div>
-    </div>
 
-    <h2 id="t-title">Konfigurator RWS</h2>
+        <h2 id="t-title">Konfigurator RWS</h2>
 
-    <label id="t-l-len">Wybierz długość (mm):</label>
-    <select id="lenSel" onchange="calculate()">
-        <option value="">-- wybierz --</option>
-        <option value="1433.5">1433,5</option>
-        <option value="1624">1624</option>
-        <option value="1814.5">1814,5</option>
-        <option value="2005">2005</option>
-        <option value="2195.5">2195,5</option>
-        <option value="2386">2386</option>
-        <option value="2576.5">2576,5</option>
-        <option value="2767">2767</option>
-        <option value="2957.5">2957,5</option>
-        <option value="3148">3148</option>
-        <option value="3338.5">3338,5</option>
-        <option value="3529">3529</option>
-        <option value="3719.5">3719,5</option>
-        <option value="3910">3910</option>
-        <option value="4100.5">4100,5</option>
-        <option value="4291">4291</option>
-        <option value="4481.5">4481,5</option>
-        <option value="4672">4672</option>
-        <option value="4862.5">4862,5</option>
-        <option value="5053">5053</option>
-        <option value="5243.5">5243,5</option>
-        <option value="5434">5434</option>
-        <option value="5624.5">5624,5</option>
-        <option value="5815">5815</option>
-    </select>
+        <label id="t-l-len">Wybierz długość (mm):</label>
+        <select id="lenSel" onchange="updateView('len')">
+            <option value="">-- wybierz --</option>
+            <option value="1433.5">1433,5</option>
+            <option value="1624">1624</option>
+            <option value="1814.5">1814,5</option>
+            <option value="2005">2005</option>
+            <option value="2195.5">2195,5</option>
+            <option value="2386">2386</option>
+            <option value="2576.5">2576,5</option>
+            <option value="2767">2767</option>
+            <option value="2957.5">2957,5</option>
+            <option value="3148">3148</option>
+            <option value="3338.5">3338,5</option>
+            <option value="3529">3529</option>
+            <option value="3719.5">3719,5</option>
+            <option value="3910">3910</option>
+            <option value="4100.5">4100,5</option>
+            <option value="4291">4291</option>
+            <option value="4481.5">4481,5</option>
+            <option value="4672">4672</option>
+            <option value="4862.5">4862,5</option>
+            <option value="5053">5053</option>
+            <option value="5243.5">5243,5</option>
+            <option value="5434">5434</option>
+            <option value="5624.5">5624,5</option>
+            <option value="5815">5815</option>
+        </select>
 
-    <label id="t-l-wid">Wybierz szerokość (mm):</label>
-    <select id="widSel" onchange="calculate()">
-        <option value="">-- wybierz --</option>
-        <option value="RL596">596</option>
-        <option value="RL896">896</option>
-        <option value="RL1196">1196</option>
-        <option value="RL1396">1396</option>
-    </select>
+        <label id="t-l-wid">Wybierz szerokość (mm):</label>
+        <select id="widSel" onchange="updateView('wid')">
+            <option value="">-- wybierz --</option>
+            <option value="RL596">596</option>
+            <option value="RL896">896</option>
+            <option value="RL1196">1196</option>
+            <option value="RL1396">1396</option>
+        </select>
 
-    <div class="price-box">
-        <span id="t-price-lbl" class="price-label">Szacowana cena:</span>
-        <span class="price-value"><span id="res">---</span> EUR</span>
-    </div>
+        <div class="price-box">
+            <span id="t-price-lbl" class="price-label">Szacowana cena:</span>
+            <span class="price-value"><span id="res">---</span> EUR</span>
+        </div>
 
-    <div class="specs" id="t-specs">
-        <strong>Stałe parametry:</strong><br>
-        Wysokość: 300 mm | Podziałka: 190,5 mm<br>
-        Średnica rolki: 88,90 mm | Napęd: MOVIONE<br>
-        Obciążenie na metr bieżący: > 500 kg
+        <div class="specs" id="t-specs">
+            <strong>Stałe parametry:</strong><br>
+            Wysokość: 300 mm | Podziałka: 190,5 mm<br>
+            Średnica rolki: 88,90 mm | Napęd: MOVIONE<br>
+            Obciążenie na metr bieżący: > 500 kg
+        </div>
     </div>
 </div>
 
@@ -142,19 +159,24 @@
         document.getElementById('widSel').options[0].text = dict[l].wait;
     }
 
+    function updateView(mode) {
+        const img = document.getElementById('mainImg');
+        if(mode === 'len') img.src = "dlugosc.png";
+        if(mode === 'wid') img.src = "szerokosc.png";
+        calculate();
+    }
+
     function calculate() {
         const length = document.getElementById('lenSel').value;
         const width = document.getElementById('widSel').value;
-        const resultElement = document.getElementById('res');
+        const resEl = document.getElementById('res');
 
-        if (length && width && priceData[length] && priceData[length][width]) {
-            const price = priceData[length][width];
-            resultElement.innerText = price.toLocaleString('pl-PL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        if (length && width && priceData[length][width]) {
+            resEl.innerText = priceData[length][width].toLocaleString('pl-PL', { minimumFractionDigits: 2 });
         } else {
-            resultElement.innerText = "---";
+            resEl.innerText = "---";
         }
     }
 </script>
-
 </body>
 </html>
