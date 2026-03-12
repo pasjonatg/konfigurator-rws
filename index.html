@@ -7,13 +7,17 @@
     <style>
         :root { --primary: #1a73e8; --bg: #f8f9fa; }
         body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); display: flex; justify-content: center; padding: 20px; color: #333; }
-        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 100%; max-width: 450px; }
+        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 100%; max-width: 450px; position: relative; }
         
-        .lang-bar { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; }
-        .lang-btn { cursor: pointer; border: 1px solid #ddd; padding: 6px 12px; border-radius: 20px; background: white; font-size: 11px; font-weight: bold; transition: 0.2s; outline: none; }
+        /* Logo i Pasek językowy */
+        .header-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+        .logo { max-width: 150px; height: auto; }
+        
+        .lang-bar { display: flex; gap: 5px; }
+        .lang-btn { cursor: pointer; border: 1px solid #ddd; padding: 5px 10px; border-radius: 15px; background: white; font-size: 10px; font-weight: bold; transition: 0.2s; outline: none; }
         .lang-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
-        h2 { color: var(--primary); margin: 0 0 15px 0; text-align: center; border-bottom: 2px solid #eee; padding-bottom: 15px; font-size: 22px; }
+        h2 { color: var(--primary); margin: 10px 0 15px 0; text-align: center; border-bottom: 2px solid #eee; padding-bottom: 15px; font-size: 22px; clear: both; }
         
         label { display: block; margin-top: 20px; font-size: 13px; font-weight: 600; color: #555; text-transform: uppercase; }
         select { width: 100%; padding: 12px; margin-top: 5px; border: 2px solid #eee; border-radius: 8px; font-size: 16px; outline: none; cursor: pointer; background: #fff; }
@@ -29,10 +33,14 @@
 <body>
 
 <div class="card">
-    <div class="lang-bar">
-        <button class="lang-btn active" onclick="setLang('pl', this)">POLSKI</button>
-        <button class="lang-btn" onclick="setLang('en', this)">ENGLISH</button>
-        <button class="lang-btn" onclick="setLang('de', this)">DEUTSCH</button>
+    <div class="header-top">
+        <img src="logo.jpg" alt="WUWER Logo" class="logo">
+        
+        <div class="lang-bar">
+            <button class="lang-btn active" onclick="setLang('pl', this)">PL</button>
+            <button class="lang-btn" onclick="setLang('en', this)">EN</button>
+            <button class="lang-btn" onclick="setLang('de', this)">DE</button>
+        </div>
     </div>
 
     <h2 id="t-title">Konfigurator RWS</h2>
@@ -69,10 +77,10 @@
     <label id="t-l-wid">Wybierz szerokość (mm):</label>
     <select id="widSel" onchange="calculate()">
         <option value="">-- wybierz --</option>
-        <option value="RL596">RL596</option>
-        <option value="RL896">RL896</option>
-        <option value="RL1196">RL1196</option>
-        <option value="RL1396">RL1396</option>
+        <option value="RL596">596</option>
+        <option value="RL896">896</option>
+        <option value="RL1196">1196</option>
+        <option value="RL1396">1396</option>
     </select>
 
     <div class="price-box">
@@ -83,12 +91,12 @@
     <div class="specs" id="t-specs">
         <strong>Stałe parametry:</strong><br>
         Wysokość: 300 mm | Podziałka: 190,5 mm<br>
-        Średnica rolki: 88,90 mm | Napęd: MOVIONE
+        Średnica rolki: 88,90 mm | Napęd: MOVIONE<br>
+        Obciążenie na metr bieżący: > 500 kg
     </div>
 </div>
 
 <script>
-    // Baza cen przepisana z Twojego Excela
     const priceData = {
         "1433.5": { "RL596": 3468.91, "RL896": 3599.09, "RL1196": 3729.28, "RL1396": 3829.14 },
         "1624": { "RL596": 3548.64, "RL896": 3683.42, "RL1196": 3818.21, "RL1396": 3922.67 },
@@ -117,9 +125,9 @@
     };
 
     const dict = {
-        pl: { title: "Konfigurator RWS", lLen: "Wybierz długość (mm):", lWid: "Wybierz szerokość (mm):", pLbl: "Szacowana cena:", wait: "-- wybierz --", specs: "<strong>Stałe parametry:</strong><br>Wysokość: 300 mm | Podziałka: 190,5 mm<br>Średnica rolki: 88,90 mm | Napęd: MOVIONE" },
-        en: { title: "RWS Configurator", lLen: "Select length (mm):", lWid: "Select width (mm):", pLbl: "Estimated price:", wait: "-- select --", specs: "<strong>Fixed parameters:</strong><br>Height: 300 mm | Pitch: 190.5 mm<br>Roller diameter: 88.90 mm | Drive: MOVIONE" },
-        de: { title: "RWS Konfigurator", lLen: "Länge wählen (mm):", lWid: "Breite wählen (mm):", pLbl: "Geschätzter Preis:", wait: "-- wählen --", specs: "<strong>Festparameter:</strong><br>Höhe: 300 mm | Teilung: 190,5 mm<br>Rollendurchmesser: 88,90 mm | Antrieb: MOVIONE" }
+        pl: { title: "Konfigurator RWS", lLen: "Wybierz długość (mm):", lWid: "Wybierz szerokość (mm):", pLbl: "Szacowana cena:", wait: "-- wybierz --", specs: "<strong>Stałe parametry:</strong><br>Wysokość: 300 mm | Podziałka: 190,5 mm<br>Średnica rolki: 88,90 mm | Napęd: MOVIONE<br>Obciążenie na metr bieżący: > 500 kg" },
+        en: { title: "RWS Configurator", lLen: "Select length (mm):", lWid: "Select width (mm):", pLbl: "Estimated price:", wait: "-- select --", specs: "<strong>Fixed parameters:</strong><br>Height: 300 mm | Pitch: 190.5 mm<br>Roller diameter: 88.90 mm | Drive: MOVIONE<br>Load per linear meter: > 500 kg" },
+        de: { title: "RWS Konfigurator", lLen: "Länge wählen (mm):", lWid: "Breite wählen (mm):", pLbl: "Geschätzter Preis:", wait: "-- wählen --", specs: "<strong>Festparameter:</strong><br>Höhe: 300 mm | Teilung: 190,5 mm<br>Rollendurchmesser: 88,90 mm | Antrieb: MOVIONE<br>Belastung pro Laufmeter: > 500 kg" }
     };
 
     function setLang(l, btn) {
