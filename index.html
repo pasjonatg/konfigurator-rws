@@ -5,17 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Konfigurator RWS</title>
     <style>
-        :root { --primary: #1a73e8; --bg: #f8f9fa; }
+        :root { --primary: #1a73e8; --bg: #f8f9fa; --accent: #34a853; }
         body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); display: flex; justify-content: center; padding: 20px; color: #333; }
-        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 100%; max-width: 900px; display: flex; gap: 30px; }
+        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 100%; max-width: 950px; display: flex; gap: 30px; }
         
-        /* Sekcja Lewa: Grafika */
         .visual-side { flex: 1; display: flex; align-items: center; justify-content: center; background: #fff; border-radius: 10px; padding: 10px; border: 1px solid #eee; }
         .visual-side img { max-width: 100%; height: auto; border-radius: 5px; transition: 0.3s; }
 
-        /* Sekcja Prawa: Formularz */
-        .form-side { flex: 1; min-width: 350px; }
-        
+        .form-side { flex: 1; min-width: 400px; }
         .header-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
         .logo { max-width: 130px; height: auto; }
         
@@ -25,21 +22,22 @@
 
         h2 { color: var(--primary); margin: 10px 0 15px 0; text-align: left; border-bottom: 2px solid #eee; padding-bottom: 15px; font-size: 20px; }
         
-        label { display: block; margin-top: 20px; font-size: 13px; font-weight: 600; color: #555; text-transform: uppercase; }
-        select { width: 100%; padding: 12px; margin-top: 5px; border: 2px solid #eee; border-radius: 8px; font-size: 16px; outline: none; cursor: pointer; background: #fff; }
+        label { display: block; margin-top: 15px; font-size: 12px; font-weight: 600; color: #555; text-transform: uppercase; }
+        select { width: 100%; padding: 10px; margin-top: 5px; border: 2px solid #eee; border-radius: 8px; font-size: 15px; outline: none; cursor: pointer; background: #fff; }
         select:focus { border-color: var(--primary); }
 
-        .price-box { margin-top: 30px; padding: 20px; background: #f0f7ff; border-radius: 12px; text-align: center; border: 1px solid #d0e3ff; }
-        .price-label { font-size: 13px; color: #666; font-weight: bold; }
-        .price-value { font-size: 32px; color: var(--primary); font-weight: 800; display: block; margin-top: 5px; }
+        .price-box { margin-top: 20px; padding: 15px; background: #f0f7ff; border-radius: 12px; text-align: center; border: 1px solid #d0e3ff; }
+        .price-label { font-size: 12px; color: #666; font-weight: bold; }
+        .price-value { font-size: 28px; color: var(--primary); font-weight: 800; display: block; }
         
-        .specs { margin-top: 25px; font-size: 12px; color: #777; line-height: 1.5; background: #fafafa; padding: 15px; border-radius: 8px; border: 1px solid #eee; }
+        .accessories-box { margin-top: 20px; padding: 15px; background: #f9f9f9; border-radius: 12px; border: 1px dashed #ccc; }
+        .acc-title { font-size: 14px; font-weight: 800; color: #333; margin-bottom: 10px; text-transform: uppercase; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+        .acc-item { font-size: 13px; margin-bottom: 6px; display: flex; justify-content: space-between; color: #444; }
+        .acc-dynamic { margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd; font-weight: bold; color: var(--accent); }
 
-        @media (max-width: 800px) {
-            .card { flex-direction: column; align-items: center; }
-            .visual-side { width: 100%; order: 2; }
-            .form-side { width: 100%; order: 1; }
-        }
+        .specs { margin-top: 20px; font-size: 11px; color: #777; line-height: 1.4; background: #fafafa; padding: 12px; border-radius: 8px; border: 1px solid #eee; }
+
+        @media (max-width: 850px) { .card { flex-direction: column; } .form-side { min-width: 100%; } }
     </style>
 </head>
 <body>
@@ -100,16 +98,24 @@
         </select>
 
         <div class="price-box">
-            <span id="t-price-lbl" class="price-label">Szacowana cena:</span>
+            <span id="t-price-lbl" class="price-label">Szacowana cena urządzenia:</span>
             <span class="price-value"><span id="res">---</span> EUR</span>
         </div>
 
-        <div class="specs" id="t-specs">
-            <strong>Stałe parametry:</strong><br>
-            Wysokość: 300 mm | Podziałka: 190,5 mm<br>
-            Średnica rolki: 88,90 mm | Napęd: MOVIONE<br>
-            Obciążenie na metr bieżący: > 500 kg
+        <div class="accessories-box">
+            <div class="acc-title" id="t-acc-title">Akcesoria dodatkowe</div>
+            <div class="acc-item"><span id="t-f-1">1 szt. Fotokomórka:</span> <span>73 EUR</span></div>
+            <div class="acc-item"><span id="t-f-2">2 szt. Fotokomórka:</span> <span>146 EUR</span></div>
+            <div class="acc-item"><span id="t-plate-1">Blachy przejściowe (1 strona):</span> <span>150 EUR</span></div>
+            <div class="acc-item"><span id="t-plate-2">Blachy przejściowe (2 strony):</span> <span>300 EUR</span></div>
+            <div class="acc-dynamic">
+                <span id="t-plate-full">Koszt blach bocznych (cała długość):</span><br>
+                <span id="sidePrice">---</span> EUR
+            </div>
         </div>
+
+        <div class="specs" id="t-specs">
+            </div>
     </div>
 </div>
 
@@ -142,18 +148,26 @@
     };
 
     const dict = {
-        pl: { title: "Konfigurator RWS", lLen: "Wybierz długość (mm):", lWid: "Wybierz szerokość (mm):", pLbl: "Szacowana cena:", wait: "-- wybierz --", specs: "<strong>Stałe parametry:</strong><br>Wysokość: 300 mm | Podziałka: 190,5 mm<br>Średnica rolki: 88,90 mm | Napęd: MOVIONE<br>Obciążenie na metr bieżący: > 500 kg" },
-        en: { title: "RWS Configurator", lLen: "Select length (mm):", lWid: "Select width (mm):", pLbl: "Estimated price:", wait: "-- select --", specs: "<strong>Fixed parameters:</strong><br>Height: 300 mm | Pitch: 190.5 mm<br>Roller diameter: 88.90 mm | Drive: MOVIONE<br>Load per linear meter: > 500 kg" },
-        de: { title: "RWS Konfigurator", lLen: "Länge wählen (mm):", lWid: "Breite wählen (mm):", pLbl: "Geschätzter Preis:", wait: "-- wählen --", specs: "<strong>Festparameter:</strong><br>Höhe: 300 mm | Teilung: 190,5 mm<br>Rollendurchmesser: 88,90 mm | Antrieb: MOVIONE<br>Belastung pro Laufmeter: > 500 kg" }
+        pl: { title: "Konfigurator RWS", lLen: "Wybierz długość (mm):", lWid: "Wybierz szerokość (mm):", pLbl: "Szacowana cena urządzenia:", wait: "-- wybierz --", acc: "Akcesoria dodatkowe (doliczane)", f1: "1 szt. Fotokomórka:", f2: "2 szt. Fotokomórka:", p1: "Blachy przejściowe (1 strona):", p2: "Blachy przejściowe (2 strony):", pf: "Koszt blach bocznych (cała długość):", specs: "<strong>Stałe parametry:</strong><br>Wysokość: 300 mm | Podziałka: 190,5 mm<br>Średnica rolki: 88,90 mm | Napęd: MOVIONE<br>Obciążenie na metr bieżący: > 500 kg" },
+        en: { title: "RWS Configurator", lLen: "Select length (mm):", lWid: "Select width (mm):", pLbl: "Estimated device price:", wait: "-- select --", acc: "Additional accessories (extra cost)", f1: "1 pc. Photocells:", f2: "2 pcs. Photocells:", p1: "Transition plates (1 side):", p2: "Transition plates (2 sides):", pf: "Side plates cost (full length):", specs: "<strong>Fixed parameters:</strong><br>Height: 300 mm | Pitch: 190.5 mm<br>Roller diameter: 88.90 mm | Drive: MOVIONE<br>Load per linear meter: > 500 kg" },
+        de: { title: "RWS Konfigurator", lLen: "Länge wählen (mm):", lWid: "Breite wählen (mm):", pLbl: "Geschätzter Gerätepreis:", wait: "-- wählen --", acc: "Zusätzliches Zubehör (Aufpreis)", f1: "1 Stk. Photozelle:", f2: "2 Stk. Photozelle:", p1: "Übergangsbleche (1 Seite):", p2: "Übergangsbleche (2 Seiten):", pf: "Seitenbleche Kosten (gesamte Länge):", specs: "<strong>Festparameter:</strong><br>Höhe: 300 mm | Teilung: 190,5 mm<br>Rollendurchmesser: 88,90 mm | Antrieb: MOVIONE<br>Belastung pro Laufmeter: > 500 kg" }
     };
 
     function setLang(l, btn) {
-        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+        if(btn) {
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
         document.getElementById('t-title').innerText = dict[l].title;
         document.getElementById('t-l-len').innerText = dict[l].lLen;
         document.getElementById('t-l-wid').innerText = dict[l].lWid;
         document.getElementById('t-price-lbl').innerText = dict[l].pLbl;
+        document.getElementById('t-acc-title').innerText = dict[l].acc;
+        document.getElementById('t-f-1').innerText = dict[l].f1;
+        document.getElementById('t-f-2').innerText = dict[l].f2;
+        document.getElementById('t-plate-1').innerText = dict[l].p1;
+        document.getElementById('t-plate-2').innerText = dict[l].p2;
+        document.getElementById('t-plate-full').innerText = dict[l].pf;
         document.getElementById('t-specs').innerHTML = dict[l].specs;
         document.getElementById('lenSel').options[0].text = dict[l].wait;
         document.getElementById('widSel').options[0].text = dict[l].wait;
@@ -167,16 +181,25 @@
     }
 
     function calculate() {
-        const length = document.getElementById('lenSel').value;
-        const width = document.getElementById('widSel').value;
-        const resEl = document.getElementById('res');
-
-        if (length && width && priceData[length][width]) {
-            resEl.innerText = priceData[length][width].toLocaleString('pl-PL', { minimumFractionDigits: 2 });
+        const lengthVal = document.getElementById('lenSel').value;
+        const widthVal = document.getElementById('widSel').value;
+        
+        if (lengthVal && widthVal && priceData[lengthVal][widthVal]) {
+            document.getElementById('res').innerText = priceData[lengthVal][widthVal].toLocaleString('pl-PL', { minimumFractionDigits: 2 });
         } else {
-            resEl.innerText = "---";
+            document.getElementById('res').innerText = "---";
+        }
+
+        if (lengthVal) {
+            const sidePrice = (parseFloat(lengthVal) / 190.5) * 50;
+            document.getElementById('sidePrice').innerText = sidePrice.toLocaleString('pl-PL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        } else {
+            document.getElementById('sidePrice').innerText = "---";
         }
     }
+    
+    // Inicjalizacja stałych parametrów przy starcie
+    setLang('pl', null);
 </script>
 </body>
 </html>
