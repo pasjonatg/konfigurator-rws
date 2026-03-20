@@ -103,19 +103,19 @@
         </div>
 
         <div class="accessories-box">
-            <div class="acc-title" id="t-acc-title">Akcesoria dodatkowe</div>
+            <div class="acc-title" id="t-acc-title">Akcesoria dodatkowe (doliczyć osobno)</div>
             <div class="acc-item"><span id="t-f-1">1 szt. Fotokomórka:</span> <span>73 EUR</span></div>
             <div class="acc-item"><span id="t-f-2">2 szt. Fotokomórka:</span> <span>146 EUR</span></div>
             <div class="acc-item"><span id="t-plate-1">Blachy przejściowe z jednej strony:</span> <span>150 EUR</span></div>
             <div class="acc-item"><span id="t-plate-2">Blachy przejściowe z dwóch stron:</span> <span>300 EUR</span></div>
             <div class="acc-dynamic">
-                <span id="t-plate-full">Koszt blach (cała długość):</span><br>
+                <span id="t-plate-full">Koszt blach przejściowych (na całej długości przenośnika):</span><br>
                 <span id="sidePrice">---</span> EUR
             </div>
         </div>
 
         <div class="specs" id="t-specs">
-        </div>
+            </div>
     </div>
 </div>
 
@@ -148,9 +148,9 @@
     };
 
     const dict = {
-        pl: { title: "Konfigurator Przenośnik rolkowy", lLen: "Wybierz długość (mm):", lWid: "Wybierz szerokość (mm):", pLbl: "Szacowana cena urządzenia:", wait: "-- wybierz --", acc: "Akcesoria dodatkowe (doliczane)", f1: "1 szt. Fotokomórka:", f2: "2 szt. Fotokomórka:", p1: "Blachy przejściowe z jednej strony:", p2: "Blachy przejściowe z dwóch stron:", pf: "Koszt blach (cała długość):", specs: "<strong>Stałe parametry:</strong><br>Wysokość: 300 mm | Podziałka: 190,5 mm<br>Średnica rolki: 88,90 mm | Napęd: MOVIONE<br>Obciążenie na metr bieżący: > 500 kg" },
-        en: { title: "Roller conveyors Configurator", lLen: "Select length (mm):", lWid: "Select width (mm):", pLbl: "Estimated device price:", wait: "-- select --", acc: "Additional accessories (extra cost)", f1: "1 pc. Photocells:", f2: "2 pcs. Photocells:", p1: "Transition plates on one side:", p2: "Transition plates on two sides:", pf: "Cost of plates (full length):", specs: "<strong>Fixed parameters:</strong><br>Height: 300 mm | Pitch: 190.5 mm<br>Roller diameter: 88.90 mm | Drive: MOVIONE<br>Load per linear meter: > 500 kg" },
-        de: { title: "Rollenförderer Konfigurator", lLen: "Länge wählen (mm):", lWid: "Breite wählen (mm):", pLbl: "Geschätzter Gerätepreis:", wait: "-- wählen --", acc: "Zusätzliches Zubehör (Aufpreis)", f1: "1 Stk. Photozelle:", f2: "2 Stk. Photozelle:", p1: "Trittbleche von einer Seite:", p2: "Trittbleche von zwei Seiten:", pf: "Kosten für Trittbleche (gesamte Länge):", specs: "<strong>Festparameter:</strong><br>Höhe: 300 mm | Teilung: 190,5 mm<br>Rollendurchmesser: 88,90 mm | Antrieb: MOVIONE<br>Belastung pro Laufmeter: > 500 kg" }
+        pl: { title: "Konfigurator Przenośnik rolkowy", lLen: "Wybierz długość (mm):", lWid: "Wybierz szerokość (mm):", pLbl: "Szacowana cena urządzenia:", wait: "-- wybierz --", acc: "Akcesoria dodatkowe (doliczyć osobno)", f1: "1 szt. Fotokomórka:", f2: "2 szt. Fotokomórka:", p1: "Blachy przejściowe z jednej strony:", p2: "Blachy przejściowe z dwóch stron:", pf: "Koszt blach przejściowych (na całej długości przenośnika):", specs: "<strong>Stałe parametry:</strong><br>Wysokość: 300 mm | Podziałka: 190,5 mm<br>Średnica rolki: 88,90 mm | Napęd: MOVIONE<br>Obciążenie na metr bieżący: > 500 kg" },
+        en: { title: "Roller conveyors Configurator", lLen: "Select length (mm):", lWid: "Select width (mm):", pLbl: "Estimated device price:", wait: "-- select --", acc: "Additional accessories (calculated separately)", f1: "1 pc. Photocells:", f2: "2 pcs. Photocells:", p1: "Transition plates on one side:", p2: "Transition plates on two sides:", pf: "Cost of transition plates (along the entire length):", specs: "<strong>Fixed parameters:</strong><br>Height: 300 mm | Pitch: 190.5 mm<br>Roller diameter: 88.90 mm | Drive: MOVIONE<br>Load per linear meter: > 500 kg" },
+        de: { title: "Rollenförderer Konfigurator", lLen: "Länge wählen (mm):", lWid: "Breite wählen (mm):", pLbl: "Geschätzter Gerätepreis:", wait: "-- wählen --", acc: "Zusätzliches Zubehör (separat berechnet)", f1: "1 Stk. Photozelle:", f2: "2 Stk. Photozelle:", p1: "Trittbleche von einer Seite:", p2: "Trittbleche von zwei Seiten:", pf: "Kosten für Trittbleche (über die gesamte Länge):", specs: "<strong>Festparameter:</strong><br>Höhe: 300 mm | Teilung: 190,5 mm<br>Rollendurchmesser: 88,90 mm | Antrieb: MOVIONE<br>Belastung pro Laufmeter: > 500 kg" }
     };
 
     function setLang(l, btn) {
